@@ -1,13 +1,14 @@
 package org.studyeasy.spring.model;
 
+import org.hibernate.validator.constraints.Email;
+
 public class User {
 private String userID;
 private String name;
+@Email
 private String email;
 
 public User() {
-	super();
-	// TODO Auto-generated constructor stub
 }
 public User(String userID, String name, String email) {
 	this.userID = userID;
