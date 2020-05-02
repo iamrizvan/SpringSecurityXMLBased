@@ -28,7 +28,7 @@ public class AppDAOImpl implements AppDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				User temp = new User(
-						rs.getString("user_id"),
+						String.valueOf(rs.getInt("user_id")),
 						rs.getString("name"),
 						rs.getString("email"));
 				listUsers.add(temp);

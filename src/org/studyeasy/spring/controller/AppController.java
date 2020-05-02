@@ -28,12 +28,10 @@ public class AppController {
 		// XML based configuration
 	    // ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/org/studyeasy/spring/DAO/Spring-AppDAOConfig.xml");
 		
-		
 		//Annotation based configuration
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		AppDAOImpl DAO = context.getBean("DAOBean",AppDAOImpl.class);
 		users = DAO.users();
-		System.out.println(users.toString());
 		mv.addObject("users", users);
 		context.close();
 		return mv;
