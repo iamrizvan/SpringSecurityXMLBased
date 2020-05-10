@@ -13,6 +13,8 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 
+	<security:global-method-security
+		secured-annotations="enabled" />
 
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/files/**"
@@ -24,7 +26,9 @@
 		<security:intercept-url pattern="/login"
 			access="permitAll" />
 		<security:intercept-url pattern="/admin"
-			access="hasRole('ADMIN')" />
+			access="permitAll" />
+		<!-- <security:intercept-url pattern="/admin" access="hasRole('ADMIN')" 
+			/> -->
 		<security:intercept-url pattern="/user"
 			access="hasAnyRole('ADMIN','USER')" />
 		<security:intercept-url pattern="/addUser"
@@ -42,6 +46,7 @@
 			logout-success-url="/" logout-url="/" />
 		<security:access-denied-handler
 			error-page="/403" />
+
 	</security:http>
 
 

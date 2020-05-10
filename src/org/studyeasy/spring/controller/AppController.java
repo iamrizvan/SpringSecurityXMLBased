@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,76 +21,66 @@ import org.studyeasy.spring.model.User;
 public class AppController {
 
 	@RequestMapping("/users")
-	public ModelAndView users()
-	{
-		ModelAndView mv= new ModelAndView("users");
+	public ModelAndView users() {
+		ModelAndView mv = new ModelAndView("users");
 		List<User> users = new ArrayList<User>();
-		
+
 		// XML based configuration
-	    // ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/org/studyeasy/spring/DAO/Spring-AppDAOConfig.xml");
-		
-		//Annotation based configuration
+		// ClassPathXmlApplicationContext context = new
+		// ClassPathXmlApplicationContext("/org/studyeasy/spring/DAO/Spring-AppDAOConfig.xml");
+
+		// Annotation based configuration
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-		AppDAOImpl DAO = context.getBean("DAOBean",AppDAOImpl.class);
+		AppDAOImpl DAO = context.getBean("DAOBean", AppDAOImpl.class);
 		users = DAO.users();
 		mv.addObject("users", users);
 		context.close();
 		return mv;
 	}
-	
+
 	@RequestMapping("/addUser")
-	public String addUser(Model model,@Valid User user, BindingResult result)
-	{
-		if(result.hasErrors())
-		{
-			model.addAttribute("user",user);
+	public String addUser(Model model, @Valid User user, BindingResult result) {
+		if (result.hasErrors()) {
+			model.addAttribute("user", user);
 			return "addUser";
-		}
-		else {
-			if(user.getName() != null && user.getEmail() != null)
-			{
+		} else {
+			if (user.getName() != null && user.getEmail() != null) {
 				AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-				AppDAOImpl DAO = context.getBean("DAOBean",AppDAOImpl.class);
+				AppDAOImpl DAO = context.getBean("DAOBean", AppDAOImpl.class);
 				DAO.addUser(user);
 				System.out.println(user);
 				context.close();
 				return "forward:/";
-			}
-			else
-			{
+			} else {
 				System.out.println("loading form.");
 				return "addUser";
 			}
 		}
-		
+
 	}
-	
 
 	@RequestMapping("/login")
-	public ModelAndView login()
-	{
+	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView("login");
-				return mv;
+		return mv;
 	}
-	
+
 	@RequestMapping("/user")
-	public ModelAndView user()
-	{
+	public ModelAndView user() {
 		ModelAndView mv = new ModelAndView("user");
-				return mv;
+		return mv;
 	}
-	
+
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/admin")
-	public ModelAndView admin()
-	{
+	public ModelAndView admin() {
 		ModelAndView mv = new ModelAndView("admin");
-				return mv;
+		return mv;
 	}
 
 	@RequestMapping("/403")
-	public ModelAndView page403()
-	{
+	public ModelAndView page403() {
 		ModelAndView mv = new ModelAndView("403");
-				return mv;
+		return mv;
 	}
 }
