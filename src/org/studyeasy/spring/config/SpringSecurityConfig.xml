@@ -15,15 +15,17 @@
 
 
 	<security:http use-expressions="true">
-	<security:intercept-url pattern="/files/**"
+		<security:intercept-url pattern="/files/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/"
+			access="permitAll" />
+		<security:intercept-url pattern="/403"
 			access="permitAll" />
 		<security:intercept-url pattern="/login"
 			access="permitAll" />
 		<security:intercept-url pattern="/admin"
 			access="hasRole('ADMIN')" />
-			<security:intercept-url pattern="/user"
+		<security:intercept-url pattern="/user"
 			access="hasAnyRole('ADMIN','USER')" />
 		<security:intercept-url pattern="/addUser"
 			access="isAuthenticated()" />
@@ -38,6 +40,8 @@
 			data-source-ref="dataSource" />
 		<security:logout invalidate-session="true"
 			logout-success-url="/" logout-url="/" />
+		<security:access-denied-handler
+			error-page="/403" />
 	</security:http>
 
 

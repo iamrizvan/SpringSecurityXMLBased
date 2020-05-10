@@ -85,5 +85,11 @@ public class AppController {
 		ModelAndView mv = new ModelAndView("admin");
 				return mv;
 	}
-	
+
+	@RequestMapping("/403")
+	public ModelAndView page403()
+	{
+		ModelAndView mv = new ModelAndView("403");
+				return mv;
+	}
 }
