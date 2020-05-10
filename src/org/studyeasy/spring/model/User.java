@@ -7,14 +7,20 @@ private String userID;
 private String name;
 @Email
 private String email;
+private String password;
+
 
 public User() {
 }
-public User(String userID, String name, String email) {
+
+public User(String userID, String name, String email, String password) {
+	super();
 	this.userID = userID;
 	this.name = name;
 	this.email = email;
+	this.password = password;
 }
+
 public String getUserID() {
 	return userID;
 }
@@ -32,6 +38,14 @@ public String getEmail() {
 }
 public void setEmail(String email) {
 	this.email = email;
+}
+
+
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
 }
 @Override
 public String toString() {

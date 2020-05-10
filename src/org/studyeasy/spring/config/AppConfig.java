@@ -10,7 +10,7 @@ import org.studyeasy.spring.DAO.AppDAOImpl;
 @Configuration
 public class AppConfig {
 
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource()
 	{
 		DriverManagerDataSource dateSource = new DriverManagerDataSource();

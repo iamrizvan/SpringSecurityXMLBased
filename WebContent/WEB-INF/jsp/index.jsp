@@ -12,43 +12,8 @@
 </head>
 <body>
 	<div align="center">
-		<h2>Submit your information</h2>
+		<h2>Welcome Rizvan The Developer</h2>
 		<a href="users">Show Users</a>
-		<hr />
-		<form:form action="hello" modelAttribute="info">
-	
-	First Name : <form:input path="firstName" required="true"
-				placeholder="Enter First Name" />
-			<br>
-			<form:errors path="firstName" cssStyle="color:red"></form:errors>
-			<p />
-	Last Name : <form:input path="lastName" required="true"
-				placeholder="Enter last Name" />
-			<br>
-			<form:errors path="lastName" cssStyle="color:red"></form:errors>
-			<p />
-	Gender : <form:radiobuttons path="gender" items="${gender}" />
-			<br>
-			<form:errors path="gender" cssStyle="color:red"></form:errors>
-			<p />
-	Country : <form:select path="country">
-				<form:option value="India"></form:option>
-				<form:option value="USA"></form:option>
-				<form:option value="Singapore"></form:option>
-			</form:select>
-			<p />
-	Visited Country :
-	<p />
-			<form:checkbox path="visitedCountry" value="China" /> China
-	<form:checkbox path="visitedCountry" value="Thailand" /> Thailand
-	<form:checkbox path="visitedCountry" value="Sweden" /> Sweden
-	<form:checkbox path="visitedCountry" value="Japan" /> Japan
-	<p />
-	Message :
-	<form:textarea path="message" required="true" />
-			<p />
-			<input type="submit" Value="Submit">
-		</form:form>
 	</div>
 </body>
 </html>

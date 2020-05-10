@@ -14,9 +14,11 @@
 <table>
 <form:form modelAttribute="user" action="addUser">
 
-<tr><td>Name : <form:input path="name"/> 
+<tr><td>Username : <form:input path="name"/> 
 <form:errors path="name" cssStyle="color:red"></form:errors></td></tr>
 <tr><td>Email : <form:input path="email"/>
+<form:errors path="email" cssStyle="color:red"></form:errors></td></tr>
+<tr><td>Password : <form:input path="password" type="password"/>
 <form:errors path="email" cssStyle="color:red"></form:errors></td></tr>
 <tr><td><input type="submit" value="Submit"></td></tr>
 </form:form>

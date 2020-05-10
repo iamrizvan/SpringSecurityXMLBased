@@ -64,4 +64,26 @@ public class AppController {
 		
 	}
 	
+
+	@RequestMapping("/login")
+	public ModelAndView login()
+	{
+		ModelAndView mv = new ModelAndView("login");
+				return mv;
+	}
+	
+	@RequestMapping("/user")
+	public ModelAndView user()
+	{
+		ModelAndView mv = new ModelAndView("user");
+				return mv;
+	}
+	
+	@RequestMapping("/admin")
+	public ModelAndView admin()
+	{
+		ModelAndView mv = new ModelAndView("admin");
+				return mv;
+	}
+	
 }

@@ -19,7 +19,7 @@ public class AppDAOImpl implements AppDAO {
 
 	@Override
 	public List<User> users() {
-		String SQL = "select * from users";
+		String SQL = "select * from users where enabled='1' order by user_id asc";
 		List<User> listUsers = new ArrayList<User>();
 		Connection conn = null;
 		try {
@@ -29,8 +29,9 @@ public class AppDAOImpl implements AppDAO {
 			while(rs.next()) {
 				User temp = new User(
 						String.valueOf(rs.getInt("user_id")),
-						rs.getString("name"),
-						rs.getString("email"));
+						rs.getString("username"),
+						rs.getString("email"),
+						rs.getString("password"));
 				listUsers.add(temp);
 			}
 			rs.close();
@@ -57,13 +58,15 @@ public class AppDAOImpl implements AppDAO {
 
 	@Override
 	public void addUser(User user) {
-		String SQL = "INSERT INTO users (name,email) VALUES (?,?)";
+		String SQL = "INSERT INTO users (username,email,password,enabled) VALUES (?,?,?,?)";
 		Connection conn = null;
 		try {
 			conn= dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(SQL);
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			ps.setString(4, "1");
 			ps.execute();
 			ps.close();
 		}
